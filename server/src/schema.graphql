@@ -1,0 +1,12 @@
+# import Post from "./generated/prisma.graphql"
+
+type Query {
+  feed: [Post!]!
+  post(id: ID!): Post
+  posts: [Post!]!
+}
+
+type Mutation {
+  createPost(imageUrl: String!, description: String): Post
+  deletePost(id: ID!): Post
+}
