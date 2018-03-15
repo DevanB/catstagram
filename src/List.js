@@ -7,7 +7,7 @@ import FEED_SUBSCRIPTION from "./graphql/feedSubscription.graphql";
 
 class ListPage extends React.Component {
   componentDidMount() {
-    this.props.subscribeToNewFeed();
+    this.subscribeToNewFeed();
   }
 
   subscribeToNewFeed() {
@@ -15,14 +15,12 @@ class ListPage extends React.Component {
       document: FEED_SUBSCRIPTION,
       updateQuery: (previous, { subscriptionData }) => {
         const newAllPosts = [
-          subscriptionData.data.feedSubscription.node,
-          ...previous.feed.posts
+          subscriptionData.data.newPost.node,
+          ...previous.feed
         ];
         const result = {
           ...previous,
-          feed: {
-            posts: newAllPosts
-          }
+          feed: [...newAllPosts]
         };
         return result;
       }
@@ -60,14 +58,5 @@ class ListPage extends React.Component {
 }
 
 export default graphql(FEED_QUERY, {
-  name: "feedQuery",
-  options: {
-    fetchPolicy: "network-only"
-  },
-  props: props =>
-    Object.assign({}, props, {
-      subscribeToNewFeed: params => {
-        return props.feedQuery.subscribeToMore({});
-      }
-    })
+  name: "feedQuery"
 })(ListPage);

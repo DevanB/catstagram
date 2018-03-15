@@ -27,7 +27,7 @@ const resolvers = {
     }
   },
   Subscription: {
-    feedSubscription: {
+    newPost: {
       subscribe: (parent, args, ctx, info) => {
         return ctx.db.subscription.post({}, info);
       }

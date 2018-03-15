@@ -1,5 +1,5 @@
 subscription {
-  feedSubscription {
+  newPost {
     node {
       id
       imageUrl
