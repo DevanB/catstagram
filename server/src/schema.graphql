@@ -10,3 +10,7 @@ type Mutation {
   createPost(imageUrl: String!, description: String): Post
   deletePost(id: ID!): Post
 }
+
+type Subscription {
+  feedSubscription: PostSubscriptionPayload!
+}

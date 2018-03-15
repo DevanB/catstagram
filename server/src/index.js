@@ -25,6 +25,13 @@ const resolvers = {
     deletePost(parent, { id }, ctx, info) {
       return ctx.db.mutation.deletePost({ where: { id } }, info);
     }
+  },
+  Subscription: {
+    feedSubscription: {
+      subscribe: (parent, args, ctx, info) => {
+        return ctx.db.subscription.posts({}, info);
+      }
+    }
   }
 };
 

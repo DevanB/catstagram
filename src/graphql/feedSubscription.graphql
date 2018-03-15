@@ -1,5 +1,5 @@
-query FeedQuery {
-  feed {
+subscription {
+  feedSubscription {
     id
     imageUrl
     description
