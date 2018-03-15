@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
 import Post from "./Post";
 import FEED_QUERY from "./graphql/feed.graphql";
@@ -12,12 +11,6 @@ const ListPage = () => (
 
       return (
         <div role="main" className="w-100 flex justify-center">
-          <Link
-            to="/new"
-            className="fixed bg-white top-0 right-0 pa4 ttu dim black no-underline"
-          >
-            + New Post
-          </Link>
           {data.feed.length > 0 && (
             <div className="w-100" style={{ maxWidth: 400 }}>
               {data.feed.map(post => (
