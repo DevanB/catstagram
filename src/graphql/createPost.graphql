@@ -1,0 +1,7 @@
+mutation CreatePostMutation($description: String!, $imageUrl: String!) {
+  createPost(description: $description, imageUrl: $imageUrl) {
+    id
+    description
+    imageUrl
+  }
+}

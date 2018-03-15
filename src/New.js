@@ -1,12 +1,13 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import React from "react";
+import { withRouter } from "react-router-dom";
+import { graphql } from "react-apollo";
+import ALL_POSTS_QUERY from "./graphql/feed.graphql";
+import CREATE_POST_MUTATION from "./graphql/createPost.graphql";
 
 class CreatePage extends React.Component {
   state = {
-    description: '',
-    imageUrl: ''
+    description: "",
+    imageUrl: ""
   };
 
   render() {
@@ -62,28 +63,10 @@ class CreatePage extends React.Component {
           });
         }
       })
-      .then(() => this.props.history.push('/'));
+      .then(() => this.props.history.push("/"));
   };
 }
 
-const ALL_POSTS_QUERY = gql`
-  query AllPosts {
-    feed {
-      id
-      imageUrl
-      description
-    }
-  }
-`;
-
-const CREATE_POST_MUTATION = gql`
-  mutation CreatePostMutation($description: String!, $imageUrl: String!) {
-    createPost(description: $description, imageUrl: $imageUrl) {
-      id
-      description
-      imageUrl
-    }
-  }
-`;
-
-export default withRouter(graphql(CREATE_POST_MUTATION, { name: 'createPost' })(CreatePage));
+export default withRouter(
+  graphql(CREATE_POST_MUTATION, { name: "createPost" })(CreatePage)
+);

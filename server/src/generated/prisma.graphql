@@ -21,9 +21,16 @@ type AggregatePost {
 }
 
 type BatchPayload {
+  """
+  The number of nodes that have been affected by the Batch operation.
+  """
   count: Long!
 }
 
+"""
+The `Long` scalar type represents non-fractional signed whole numeric values.
+Long can represent values between -(2^63) and 2^63 - 1.
+"""
 scalar Long
 
 type Mutation {
@@ -41,19 +48,49 @@ enum MutationType {
   DELETED
 }
 
+"""
+An object with an ID
+"""
 interface Node {
+  """
+  The id of the object.
+  """
   id: ID!
 }
 
+"""
+Information about pagination in a connection.
+"""
 type PageInfo {
+  """
+  When paginating forwards, are there more items?
+  """
   hasNextPage: Boolean!
+  """
+  When paginating backwards, are there more items?
+  """
   hasPreviousPage: Boolean!
+  """
+  When paginating backwards, the cursor to continue.
+  """
   startCursor: String
+  """
+  When paginating forwards, the cursor to continue.
+  """
   endCursor: String
 }
 
+"""
+A connection to a list of items.
+"""
 type PostConnection {
+  """
+  Information to aid in pagination.
+  """
   pageInfo: PageInfo!
+  """
+  A list of edges.
+  """
   edges: [PostEdge]!
   aggregate: AggregatePost!
 }
@@ -63,8 +100,17 @@ input PostCreateInput {
   description: String!
 }
 
+"""
+An edge in a connection.
+"""
 type PostEdge {
+  """
+  The item at the end of the edge.
+  """
   node: Post!
+  """
+  A cursor for use in pagination.
+  """
   cursor: String!
 }
 
@@ -95,11 +141,29 @@ type PostSubscriptionPayload {
 }
 
 input PostSubscriptionWhereInput {
+  """
+  Logical AND on all given filters.
+  """
   AND: [PostSubscriptionWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
   OR: [PostSubscriptionWhereInput!]
+  """
+  The subscription event gets dispatched when it's listed in mutation_in
+  """
   mutation_in: [MutationType!]
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
   updatedFields_contains: String
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
   updatedFields_contains_every: [String!]
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
   updatedFields_contains_some: [String!]
   node: PostWhereInput
 }
@@ -110,49 +174,172 @@ input PostUpdateInput {
 }
 
 input PostWhereInput {
+  """
+  Logical AND on all given filters.
+  """
   AND: [PostWhereInput!]
+  """
+  Logical OR on all given filters.
+  """
   OR: [PostWhereInput!]
   id: ID
+  """
+  All values that are not equal to given value.
+  """
   id_not: ID
+  """
+  All values that are contained in given list.
+  """
   id_in: [ID!]
+  """
+  All values that are not contained in given list.
+  """
   id_not_in: [ID!]
+  """
+  All values less than the given value.
+  """
   id_lt: ID
+  """
+  All values less than or equal the given value.
+  """
   id_lte: ID
+  """
+  All values greater than the given value.
+  """
   id_gt: ID
+  """
+  All values greater than or equal the given value.
+  """
   id_gte: ID
+  """
+  All values containing the given string.
+  """
   id_contains: ID
+  """
+  All values not containing the given string.
+  """
   id_not_contains: ID
+  """
+  All values starting with the given string.
+  """
   id_starts_with: ID
+  """
+  All values not starting with the given string.
+  """
   id_not_starts_with: ID
+  """
+  All values ending with the given string.
+  """
   id_ends_with: ID
+  """
+  All values not ending with the given string.
+  """
   id_not_ends_with: ID
   imageUrl: String
+  """
+  All values that are not equal to given value.
+  """
   imageUrl_not: String
+  """
+  All values that are contained in given list.
+  """
   imageUrl_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
   imageUrl_not_in: [String!]
+  """
+  All values less than the given value.
+  """
   imageUrl_lt: String
+  """
+  All values less than or equal the given value.
+  """
   imageUrl_lte: String
+  """
+  All values greater than the given value.
+  """
   imageUrl_gt: String
+  """
+  All values greater than or equal the given value.
+  """
   imageUrl_gte: String
+  """
+  All values containing the given string.
+  """
   imageUrl_contains: String
+  """
+  All values not containing the given string.
+  """
   imageUrl_not_contains: String
+  """
+  All values starting with the given string.
+  """
   imageUrl_starts_with: String
+  """
+  All values not starting with the given string.
+  """
   imageUrl_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
   imageUrl_ends_with: String
+  """
+  All values not ending with the given string.
+  """
   imageUrl_not_ends_with: String
   description: String
+  """
+  All values that are not equal to given value.
+  """
   description_not: String
+  """
+  All values that are contained in given list.
+  """
   description_in: [String!]
+  """
+  All values that are not contained in given list.
+  """
   description_not_in: [String!]
+  """
+  All values less than the given value.
+  """
   description_lt: String
+  """
+  All values less than or equal the given value.
+  """
   description_lte: String
+  """
+  All values greater than the given value.
+  """
   description_gt: String
+  """
+  All values greater than or equal the given value.
+  """
   description_gte: String
+  """
+  All values containing the given string.
+  """
   description_contains: String
+  """
+  All values not containing the given string.
+  """
   description_not_contains: String
+  """
+  All values starting with the given string.
+  """
   description_starts_with: String
+  """
+  All values not starting with the given string.
+  """
   description_not_starts_with: String
+  """
+  All values ending with the given string.
+  """
   description_ends_with: String
+  """
+  All values not ending with the given string.
+  """
   description_not_ends_with: String
 }
 
@@ -164,7 +351,13 @@ type Query {
   posts(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post]!
   post(where: PostWhereUniqueInput!): Post
   postsConnection(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): PostConnection!
-  node(id: ID!): Node
+  """
+  Fetches an object given its ID
+  """
+  node("""
+  The ID of an object
+  """
+  id: ID!): Node
 }
 
 type Subscription {

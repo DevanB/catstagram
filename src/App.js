@@ -1,19 +1,13 @@
-import React, { Fragment } from 'react';
-import { ApolloClient } from 'apollo-client';
-import { HttpLink, InMemoryCache } from 'apollo-client-preset';
-import { ApolloProvider } from 'react-apollo';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import 'tachyons';
+import React, { Fragment } from "react";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
+import "tachyons";
 
-import ListPage from './List';
-import NewPage from './New';
+import ListPage from "./List";
+import NewPage from "./New";
 
-const client = new ApolloClient({
-  link: new HttpLink({
-    uri: `http://localhost:4000`
-  }),
-  cache: new InMemoryCache()
-});
+const client = new ApolloClient({ uri: "http://localhost:4000" });
 
 const App = () => (
   <ApolloProvider client={client}>
