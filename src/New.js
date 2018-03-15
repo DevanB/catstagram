@@ -4,7 +4,7 @@ import { graphql } from "react-apollo";
 import ALL_POSTS_QUERY from "./graphql/feed.graphql";
 import CREATE_POST_MUTATION from "./graphql/createPost.graphql";
 
-class CreatePage extends React.Component {
+class New extends React.Component {
   state = {
     description: "",
     imageUrl: ""
@@ -68,5 +68,5 @@ class CreatePage extends React.Component {
 }
 
 export default withRouter(
-  graphql(CREATE_POST_MUTATION, { name: "createPost" })(CreatePage)
+  graphql(CREATE_POST_MUTATION, { name: "createPost" })(New)
 );
