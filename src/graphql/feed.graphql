@@ -3,5 +3,6 @@ query AllPosts {
     id
     imageUrl
     description
+    liked @client
   }
 }

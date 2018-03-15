@@ -1,11 +1,13 @@
 import React from "react";
-import { graphql } from "react-apollo";
+import { graphql, Mutation } from "react-apollo";
 import ALL_POSTS_QUERY from "./graphql/feed.graphql";
 import DELETE_MUTATION from "./graphql/deletePost.graphql";
+import TOGGLE_LIKED_POST from "./graphql/toggleLikedPost.graphql";
 
 class Post extends React.Component {
   render() {
-    const { imageUrl, description } = this.props;
+    const { imageUrl, id, description, liked } = this.props;
+    console.log(id);
     return (
       <div className="pa3 bg-black-05 ma3">
         <div
@@ -22,6 +24,14 @@ class Post extends React.Component {
             Delete
           </span>
         </div>
+        <Mutation mutation={TOGGLE_LIKED_POST} variables={{ id: id }}>
+          {toggleLike => (
+            <span>
+              <button onClick={toggleLike}>Like</button>
+            </span>
+          )}
+        </Mutation>
+        {liked ? "Liked!" : "Not Liked :("}
       </div>
     );
   }
