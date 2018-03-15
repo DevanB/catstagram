@@ -29,7 +29,7 @@ const resolvers = {
   Subscription: {
     feedSubscription: {
       subscribe: (parent, args, ctx, info) => {
-        return ctx.db.subscription.posts({}, info);
+        return ctx.db.subscription.post({}, info);
       }
     }
   }

@@ -1,7 +1,9 @@
 subscription {
   feedSubscription {
-    id
-    imageUrl
-    description
+    node {
+      id
+      imageUrl
+      description
+    }
   }
 }

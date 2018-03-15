@@ -10,6 +10,25 @@ class ListPage extends React.Component {
     this.props.subscribeToNewFeed();
   }
 
+  subscribeToNewFeed() {
+    this.props.feedQuery.subscribeToMore({
+      document: FEED_SUBSCRIPTION,
+      updateQuery: (previous, { subscriptionData }) => {
+        const newAllPosts = [
+          subscriptionData.data.feedSubscription.node,
+          ...previous.feed.posts
+        ];
+        const result = {
+          ...previous,
+          feed: {
+            posts: newAllPosts
+          }
+        };
+        return result;
+      }
+    });
+  }
+
   render() {
     const { feed, loading, error } = this.props.feedQuery;
     if (loading) return <div>Loading...</div>;
@@ -48,23 +67,7 @@ export default graphql(FEED_QUERY, {
   props: props =>
     Object.assign({}, props, {
       subscribeToNewFeed: params => {
-        console.log(props);
-        return props.feedQuery.subscribeToMore({
-          document: FEED_SUBSCRIPTION,
-          updateQuery: (prev, { subscriptionData }) => {
-            console.log("prev,", prev);
-            console.log("subscribed data", subscriptionData);
-            if (!subscriptionData.data) return prev;
-            const newPost = subscriptionData.data.feedSubscription;
-            console.log(newPost, prev.feed);
-            if (prev.feed.find(post => post.id === newPost.id)) {
-              return prev;
-            }
-            return Object.assign({}, prev, {
-              feed: [...prev.feed, newPost]
-            });
-          }
-        });
+        return props.feedQuery.subscribeToMore({});
       }
     })
 })(ListPage);
