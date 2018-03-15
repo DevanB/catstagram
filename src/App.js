@@ -4,10 +4,10 @@ import { ApolloProvider } from "react-apollo";
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import "tachyons";
 
-import ListPage from "./List";
-import NewPage from "./New";
-
 const client = new ApolloClient({ uri: "http://localhost:4000" });
+
+const ListPage = () => <h1>List Page</h1>;
+const NewPage = () => <h1>New Page</h1>;
 
 const App = () => (
   <ApolloProvider client={client}>

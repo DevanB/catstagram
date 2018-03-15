@@ -1,7 +1,0 @@
-query AllPosts {
-  feed {
-    id
-    imageUrl
-    description
-  }
-}
