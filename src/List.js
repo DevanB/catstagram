@@ -14,6 +14,7 @@ class ListPage extends React.Component {
     this.props.feedQuery.subscribeToMore({
       document: FEED_SUBSCRIPTION,
       updateQuery: (previous, { subscriptionData }) => {
+        if (subscriptionData.data.newPost.mutation === "DELETED") return;
         const newAllPosts = [
           subscriptionData.data.newPost.node,
           ...previous.feed

@@ -1,5 +1,6 @@
 subscription {
   newPost {
+    mutation
     node {
       id
       imageUrl
